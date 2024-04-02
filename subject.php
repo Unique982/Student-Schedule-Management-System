@@ -35,8 +35,8 @@ if($conut>0){
     ?>
     <tr>
       <td><?php echo $row['id'] ?></td>
-      <td><?php echo $row['subject_name'] ?></td>
       <td><?php echo $row['subject_code'] ?></td>
+      <td><?php echo $row['subject_name'] ?></td>
       <td>
        <a href="update_subject.php?id=<?php echo $row['id'] ?>"> <button type="button" class="btn btn-success">Edit</button></a>
         <a href="delete_subject.php?id=<?php echo $row['id'] ?>><button type="button" class="btn btn-danger">Delete</button></a>
