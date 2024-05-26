@@ -1,5 +1,9 @@
 <?php 
 include './database/config.php';
+session_start();
+if(!isset($_SESSION['username'])){
+ header("Location:login.php");
+}
 if(isset($_POST['room'])){
     $room_code = mysqli_real_escape_string($conn,$_POST['room_code']);
     // $room_name =mysqli_real_escape_string($conn,$_POST['room_name']);
@@ -29,18 +33,29 @@ if(isset($_POST['room'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-      <h1>Add Roo/class</h1>
-      <form action="" method="POST" enctype="multipart/form-data">
-        <div class="input-box">
-            <label>Room Code:</label>
-            <input type="text" name="room_code">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mx-auto">
+          <div class="card b-light">
+            <div class="card-header bg-primary text-light text-center">
+              <b>ADD CLASS</b>
+            </div>
+            <div class="card-body">
+              <form action="" method="POST">
+                <div class="form-group">
+                  <label for="">Class Number:</label>
+                  <input type="text" name="room_code" class="form-control">
+                </div>
+                <div class="form-group">
+                <button type="submit" name="room" class="btn btn-outline-warning text-dark">ADD Room</button>
+
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <!-- <div class="input-box">
-            <label>Room Name:</label>
-            <input type="text" name="room_name">
-        </div> -->
-        <input type="submit" name="room" value="add">
-      </form>
+      </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
