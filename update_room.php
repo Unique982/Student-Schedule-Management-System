@@ -1,5 +1,9 @@
 <?php
  include './database/config.php';
+ session_start();
+if(!isset($_SESSION['username'])){
+ header("Location:login.php");
+}
  if(isset($_POST['edit'])){
     $cid = $_POST['cid'];
     $room_code = mysqli_real_escape_string($conn,$_POST['room_code']);
@@ -26,6 +30,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+  <div class="container">
+      <div class="row">
+  
+        <div class="col-md-6 mx-auto">
+          <div class="card bg-light">
+            <div class="card-header bg-success text-dark text-center">
+              <b>Class Update</b>
+            </div>
     <?php
     $cid= $_GET['cid'];
     $sql1= "SELECT * FROM class WHERE id='$cid'";
@@ -35,16 +47,27 @@
         
     
     ?>
-    <h1>Room Update</h1>
-  <form action="" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="cid" value="<?php echo $row['id'] ?>">
-        <div class="input-box">
-            <label>Room Code:</label>
-            <input type="text" name="room_code" value="<?php echo $row['class_code'] ?>">
+    <div class="card-body">
+              <form action="" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="cid" value="<?php echo $row['id'] ?>">
+                <div class="form-group">
+                <label for="">Room Number:</label>
+            <input type="text" name="room_code" value="<?php echo $row['class_code'] ?>" class="form-control">
+                </div>
+               
+                <div class="form-group">
+                  <button type="submit" name="edit" class="btn btn-primary text-dark">Update</button>
+                </div>
+              </form>
+              <?php  } }?>
+            </div>
+               
+          </div>
         </div>
-        <input type="submit" name="edit" value="add">
-      </form>
-      <?php } } ?>
+      </div>
+    </div>
+   
+ 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
